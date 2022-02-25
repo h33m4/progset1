@@ -138,27 +138,20 @@ public class CS124ProgAssign1 {
     
     public static void main(String[] args) throws IOException {
         
-        N = 128;
-        int runs = 5;
-        
-        int[] dims = {0, 2, 3, 4};
-        
-//        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("C:\\src\\Harvard 2021-2022\\Spring Semester\\CS 124\\psets\\" + N + "nodes1.txt")));
+        N = Integer.parseInt(args[0]);
+        int runs = Integer.parseInt(args[1]);
+        int dim = Integer.parseInt(args[2]);
+
+        double avg_weight = 0;
+
         for(int x = 0; x < runs; x++) {
-            for (int dim : dims) {
-                V = new boolean[N];
-                double avg = MST_dim(dim);
-                
-                total[dim] += avg;
-            }
+            V = new boolean[N];
+            avg_weight += MST_dim(dim); // get total weights from all the runs
         }
-        
-        for (int dim : dims) {
-            total[dim] /= runs;
-            System.out.println(dim + "-dimension with " + N + " nodes run " + runs + " times has average of " + total[dim]);
-        }
-        
-//        out.close();
+        avg_weight /= runs; // get the average weight from all the runs
+
+        System.out.println(avg_weight + " " + N + " " + runs + " " + dim);
+
     }
 }
 
